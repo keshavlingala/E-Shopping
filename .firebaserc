@@ -1,0 +1,20 @@
+{
+  "projects": {
+    "default": "e-shopping-3c414"
+  },
+  "targets": {
+    "e-shopping-3c414": {
+      "hosting": {
+        "kpshopping": [
+          "kpshopping"
+        ],
+        "pshopping": [
+          "pshopping"
+        ],
+        "e-shopping-3c414": [
+          "e-shopping-3c414"
+        ]
+      }
+    }
+  }
+}

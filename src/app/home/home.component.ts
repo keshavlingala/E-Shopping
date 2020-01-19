@@ -1,29 +1,40 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Product} from '../Product';
 import {ProductsService} from '../products.service';
+import {Observable} from 'rxjs';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewInit {
 
-  items: Product[];
+  items$: Observable<Product[]>;
 
   constructor(
-    private data: ProductsService
+    private data: ProductsService,
+    private routes: ActivatedRoute
   ) {
+
   }
 
   ngOnInit(): void {
-    this.data.getProducts(0).subscribe(data => {
-      this.items = data;
-    });
+    this.data.init('Products', 'sku');
+    console.log('Inited');
+    console.log(this.data.query);
   }
 
-  replaceImg(item: Product) {
-    console.log('Replace');
-    item.image = 'http://lorempixel.com/g/400/200';
+  ngAfterViewInit(): void {
+    // this.items$ = this.data.getProducts(0);
+  }
+
+  reSort(name: string, reverse: boolean) {
+    this.data.query.reserve = reverse;
+    this.data.query.field = name;
+    this.data.init('Products', name, reverse);
+    console.log(this.data.query);
+
   }
 }

@@ -1,10 +1,17 @@
-<div class="container">
+<div class="container w-100">
   <div *ngFor="let item of data.cartProducts">
     <div class="mt-4">
       <app-cart-item (eCost)="sumCost($event)" [item]="item"></app-cart-item>
     </div>
   </div>
-  <div class="p-4 row float-right">
-    Total Cost:  <span class="font-weight-bolder">{{totalCost | currency}}</span>
+  <div class="p-4">
+    <div class="float-right">
+      Total Cost: <span class="font-weight-bolder">{{totalCost | currency}}</span>
+    </div>
+  </div>
+  <div class="p-4 mb-5">
+    <div class="float-right">
+      <button color="primary" mat-flat-button>Checkout</button>
+    </div>
   </div>
 </div>

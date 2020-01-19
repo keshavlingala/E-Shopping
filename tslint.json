@@ -52,6 +52,9 @@
       "timeEnd",
       "trace"
     ],
+    "variable-name": [
+      "allow-leading-underscore"
+    ],
     "no-empty": false,
     "no-inferrable-types": [
       true,

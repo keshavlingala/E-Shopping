@@ -1,34 +1,27 @@
 <div class="container-fluid">
-
-  <div class="row justify-content-around">
-    <div class="col-4" *ngFor="let item of items">
-      <mat-card class="m-2">
-        <img [routerLink]="['shop',item.upc]" (error)="replaceImg(item)" height="300px" *ngIf="item.image else holder"
-             mat-card-image [src]="item.image"
-             alt="Image Broken">
-        <mat-card-content>
-          <p>
-            {{(item.description | slice:0:100) + '...'}}
-          </p>
-        </mat-card-content>
-        <mat-card-header [routerLink]="['shop',item.upc]">
-          <mat-card-title>
-            {{item.name}}
-          </mat-card-title>
-          <mat-card-subtitle>
-            {{item.manufacturer}}
-          </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions>
-          <button (click)="data.addToCart(item)" class="mr-1" mat-raised-button
-                  color="accent">{{data.inCart(item.upc) ? 'Added' : 'Add to Cart'}}</button>
-          <button class="mr-1" mat-stroked-button color="accent">Add To Wish List</button>
-        </mat-card-actions>
-      </mat-card>
+  <mat-menu #sorters>
+    <button mat-menu-item (click)="reSort('name',this.data.query.reserve)">Name</button>
+    <button mat-menu-item (click)="reSort('price',this.data.query.reserve)">Price</button>
+    <button mat-menu-item (click)="reSort('shipping',this.data.query.reserve)">Shipping Time</button>
+  </mat-menu>
+  <mat-menu #orders>
+    <button mat-menu-item (click)="reSort(data.query.field,false)">Low to High</button>
+    <button mat-menu-item (click)="reSort(data.query.field,true)">High to Low</button>
+  </mat-menu>
+<!--  <mat-toolbar-row>-->
+<!--    <mat-button-toggle-group>-->
+<!--      <button mat-button color="primary" [matMenuTriggerFor]="sorters">Sort</button>-->
+<!--      <button mat-button color="primary" [matMenuTriggerFor]="orders">Order</button>-->
+<!--    </mat-button-toggle-group>-->
+<!--  </mat-toolbar-row>-->
+  <div class="row justify-content-around h-auto">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3" *ngFor="let item of data.data | async">
+      <app-item-card class="h-auto" [item]="item"></app-item-card>
     </div>
   </div>
 </div>
-
+<app-spinner *ngIf="data.loading"></app-spinner>
 <ng-template #holder>
   <img src="http://lorempixel.com/g/400/200" alt="">
 </ng-template>
+<mat-divider></mat-divider>

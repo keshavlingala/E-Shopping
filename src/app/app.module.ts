@@ -12,7 +12,7 @@ import {
   MatDividerModule, MatExpansionModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule,
-  MatListModule, MatSnackBarModule, MatTableModule,
+  MatListModule, MatMenuModule, MatSnackBarModule, MatTableModule,
   MatToolbarModule
 } from '@angular/material';
 import {ItemDescComponent} from './item-desc/item-desc.component';
@@ -23,6 +23,10 @@ import {FormsModule} from '@angular/forms';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore';
+import {ItemCardComponent} from './item-card/item-card.component';
+import {ProductsService} from './products.service';
+import { ScrollableDirective } from './scrollable.directive';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,10 @@ import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore'
     ItemDescComponent,
     HomeComponent,
     CartComponent,
-    CartItemComponent
+    CartItemComponent,
+    ItemCardComponent,
+    ScrollableDirective,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -56,10 +63,13 @@ import {AngularFirestore, AngularFirestoreModule} from '@angular/fire/firestore'
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule.enablePersistence({
       synchronizeTabs: true
-    })
+    }),
+    MatMenuModule
 
   ],
-  providers: [],
+  providers: [
+    ProductsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

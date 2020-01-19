@@ -17,3 +17,8 @@ button {
 mat-icon {
   cursor: pointer;
 }
+
+.scrollable {
+  overflow: auto;
+  max-height: 100vh;
+}

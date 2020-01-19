@@ -1,0 +1,23 @@
+<mat-card class="m-2">
+  <img class="w-100" [routerLink]="['shop',item.upc]" (error)="replaceImg(item)" height="auto" *ngIf="item.image"
+       mat-card-image [src]="item.image"
+       alt="Image Broken">
+  <mat-card-content>
+  </mat-card-content>
+  <mat-card-header [routerLink]="['shop',item.upc]">
+    <mat-card-title class="text-justify">
+      {{item.name}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      {{item.model}}
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-actions>
+    <b>{{item.price | currency}}</b>
+  </mat-card-actions>
+  <mat-card-footer class="p-2 text-center">
+    <button (click)="data.addToCart(item)" class="m-2" mat-raised-button
+            color="accent">{{data.inCart(item.upc) ? 'Added' : 'Add to Cart'}}</button>
+    <button class="m-2" mat-stroked-button color="accent">Add To Wish List</button>
+  </mat-card-footer>
+</mat-card>

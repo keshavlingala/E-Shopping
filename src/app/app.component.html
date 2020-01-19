@@ -1,6 +1,8 @@
-<mat-toolbar  color="primary">
-  <button routerLink="/" mat-button>E-Shopping</button>
-  <span class="flex-fill"></span>
-  <mat-icon routerLink="/cart" [matBadge]="data.cart.length+''">shopping_cart</mat-icon>
-</mat-toolbar>
-<router-outlet></router-outlet>
+<div class="scrollable" appScrollable (scrollPosition)="data.scrollHandler($event)">
+  <mat-toolbar color="primary">
+    <button routerLink="/" mat-button>E-Shopping</button>
+    <span class="flex-fill"></span>
+    <mat-icon routerLink="/cart" [matBadge]="(data.cart$|async).length+''">shopping_cart</mat-icon>
+  </mat-toolbar>
+  <router-outlet class="h-auto"></router-outlet>
+</div>

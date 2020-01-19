@@ -1,3 +1,5 @@
+import {QueryDocumentSnapshot} from '@angular/fire/firestore';
+
 export interface Product {
   sku: number;
   name: string;
@@ -5,6 +7,7 @@ export interface Product {
   price: number;
   upc: string;
   quantity?: number;
+  doc?: QueryDocumentSnapshot<Product>;
   category: Category[];
   shipping: number;
   description: string;
