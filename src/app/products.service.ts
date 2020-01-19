@@ -96,7 +96,7 @@ export class ProductsService {
     };
     const first = this.afs.collection<Product>(this.query.path, ref => {
       return ref
-        .orderBy(this.query.field, this.query.reserve ? 'desc' : 'asc')
+        // .orderBy(this.query.field, this.query.reserve ? 'desc' : 'asc')
         .limit(this.query.limit);
     });
     this.mapAndUpdate(first);
@@ -138,7 +138,7 @@ export class ProductsService {
     console.log(cursor);
     const more = this.afs.collection<Product>(this.query.path, ref => {
       return ref
-        .orderBy(this.query.field, this.query.reserve ? 'desc' : 'asc')
+        // .orderBy(this.query.field, this.query.reserve ? 'desc' : 'asc')
         .limit(this.query.limit)
         .startAfter(cursor);
     });

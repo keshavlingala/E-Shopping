@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.data.init('Products', 'sku');
+    this.data.init('Products', '');
     console.log('Inited');
     console.log(this.data.query);
   }

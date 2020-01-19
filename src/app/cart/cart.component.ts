@@ -12,7 +12,7 @@ export class CartComponent implements OnInit, OnDestroy {
   products: Product[];
   totalCost = 0;
   cartItems: { [upc: string]: Product } = {};
-  subg: Subscription[];
+  subg: Subscription[] = [];
 
   constructor(
     private data: ProductsService
